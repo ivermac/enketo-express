@@ -63,7 +63,7 @@ function getManifest( survey ) {
         // a manifest is optional
         return Promise.resolve( survey );
     } else {
-        _request( {
+        return _request( {
                 url: survey.info.manifestUrl,
                 auth: survey.credentials,
                 headers: {
