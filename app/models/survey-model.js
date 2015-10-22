@@ -1,6 +1,6 @@
 'use strict';
 
-var Promise = require( 'q' ).Promise;
+var Promise = require( 'lie' );
 var utils = require( '../lib/utils' );
 var TError = require( '../lib/custom-error' ).TranslatedError;
 var config = require( './config-model' ).server;
@@ -23,7 +23,7 @@ if ( process.env.NODE_ENV === 'test' ) {
  * @return {[type]}    [description]
  */
 function getSurvey( id ) {
-    var msg, error;
+    var error;
 
     return new Promise( function( resolve, reject ) {
         if ( !id ) {
@@ -195,7 +195,9 @@ function addSubmission( id ) {
 }
 
 function getNumberOfSurveys( server ) {
-    var error, tasks, number, cleanServerUrl;
+    var error;
+    var number;
+    var cleanServerUrl;
 
     return new Promise( function( resolve, reject ) {
         cleanServerUrl = ( server === '' ) ? '' : utils.cleanUrl( server );
@@ -223,7 +225,9 @@ function getNumberOfSurveys( server ) {
 }
 
 function getListOfSurveys( server ) {
-    var error, tasks, list, cleanServerUrl;
+    var error;
+    var list;
+    var cleanServerUrl;
 
     return new Promise( function( resolve, reject ) {
         cleanServerUrl = ( server === '' ) ? '' : utils.cleanUrl( server );
@@ -260,7 +264,6 @@ function getListOfSurveys( server ) {
 }
 
 function _getEnketoId( openRosaKey ) {
-    var iterator;
 
     return new Promise( function( resolve, reject ) {
         if ( !openRosaKey ) {

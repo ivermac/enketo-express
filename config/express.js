@@ -1,7 +1,5 @@
 'use strict';
 
-var themesSupported = [];
-var languagesSupported = [];
 var express = require( 'express' );
 var path = require( 'path' );
 var bodyParser = require( 'body-parser' );
@@ -19,7 +17,9 @@ var debug = require( 'debug' )( 'express' );
 
 // general 
 for ( var item in config ) {
-    app.set( item, app.get( item ) || config[ item ] );
+    if ( config.hasOwnProperty( item ) ) {
+        app.set( item, app.get( item ) || config[ item ] );
+    }
 }
 app.set( 'port', process.env.PORT || app.get( "port" ) || 3000 );
 app.set( 'env', process.env.NODE_ENV || 'production' );

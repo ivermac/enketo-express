@@ -91,7 +91,7 @@ function _checkAutoSavedRecord() {
     }
     return records.getAutoSavedRecord()
         .then( function( record ) {
-            return new Promise( function( resolve, reject ) {
+            return new Promise( function( resolve ) {
                 if ( record ) {
                     gui.confirm( {
                         heading: t( 'confirm.autosaveload.heading' ),

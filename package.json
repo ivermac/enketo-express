@@ -33,6 +33,7 @@
         "jquery": "2.1.x",
         "jwt-simple": "0.3.x",
         "libxmljs": "0.14.x",
+        "lie": "3.0.x",
         "lodash": "3.10.x",
         "morgan": "1.x.x",
         "papaparse": "4.1.x",

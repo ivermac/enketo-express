@@ -2,7 +2,7 @@
 
 var express = require( 'express' );
 var router = express.Router();
-var debug = require( 'debug' )( 'pages-controller' );
+// var debug = require( 'debug' )( 'pages-controller' );
 
 module.exports = function( app ) {
     app.use( '/', router );

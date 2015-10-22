@@ -54,11 +54,6 @@ function _swapCache() {
     } catch ( e ) {}
 }
 
-function _updateCache() {
-    console.log( 'Checking for application cache update' );
-    window.applicationCache.update();
-}
-
 function _reportOfflineLaunchCapable( event ) {
     console.log( 'Application cache event:', event );
     $( document ).trigger( 'offlinelaunchcapable' );

@@ -4,7 +4,7 @@ var manifest = require( '../models/manifest-model' );
 var Promise = require( 'q' ).Promise;
 var express = require( 'express' );
 var router = express.Router();
-var debug = require( 'debug' )( 'manifest-controller' );
+// var debug = require( 'debug' )( 'manifest-controller' );
 
 module.exports = function( app ) {
     app.use( '/_/manifest.appcache*', router );

@@ -11,7 +11,7 @@ var isArray = require( 'lodash/lang/isArray' );
 var express = require( 'express' );
 var url = require( 'url' );
 var router = express.Router();
-var debug = require( 'debug' )( 'transformation-controller' );
+// var debug = require( 'debug' )( 'transformation-controller' );
 
 module.exports = function( app ) {
     app.use( '/transform', router );
@@ -147,7 +147,7 @@ function _updateCache( survey ) {
 function _addMediaMap( survey ) {
     var mediaMap = null;
 
-    return new Promise( function( resolve, reject ) {
+    return new Promise( function( resolve ) {
         if ( isArray( survey.manifest ) ) {
             survey.manifest.forEach( function( file ) {
                 mediaMap = mediaMap ? mediaMap : {};
@@ -178,8 +178,6 @@ function _checkQuota( survey ) {
     return surveyModel
         .getNumber( survey.account.openRosaServer )
         .then( function( quotaUsed ) {
-            debug( 'quota available', survey.account.quota );
-            debug( 'quota used', quotaUsed );
             if ( quotaUsed <= survey.account.quota ) {
                 return Promise.resolve( survey );
             }
