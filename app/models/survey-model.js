@@ -308,7 +308,9 @@ function _getActiveSurveys( openRosaIds ) {
                 return getSurvey( id ).catch( _404Empty );
             } );
         } )
-        .then( Promise.all )
+        .then( function( tasks ) {
+            return Promise.all( tasks );
+        } )
         .then( function( surveys ) {
             return surveys.filter( _nonEmpty );
         } );
