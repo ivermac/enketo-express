@@ -23,7 +23,7 @@ var $ = require( 'jquery' );
 var options;
 
 // The postProcessor assumes that array values with line breaks should be divided into HTML paragraphs.
-i18next.addPostProcessor( "htmlParagraphs", function( value, key, options ) {
+i18next.addPostProcessor( "htmlParagraphs", function( value, key ) {
     var paragraphs = value.split( '\n' );
     return ( paragraphs.length > 1 ) ? '<p>' + paragraphs.join( '</p><p>' ) + '</p>' : value;
 } );

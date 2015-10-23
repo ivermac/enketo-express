@@ -46,7 +46,7 @@ function getSurvey( id ) {
                     error.status = 406;
                     reject( error );
                 } else {
-                    debug( 'object retrieved from database for id "' + id + '"', obj );
+                    // debug( 'object retrieved from database for id "' + id + '"', obj );
                     obj.enketoId = id;
                     // no need to wait for result of updating lastAccessed 
                     client.hset( 'id:' + id, 'lastAccessed', new Date().toISOString() );
@@ -206,7 +206,7 @@ function getNumberOfSurveys( server ) {
             error.status = 400;
             reject( error );
         } else {
-            client.keys( "or:" + cleanServerUrl + "*", function( err, keys ) {
+            client.keys( 'or:' + cleanServerUrl + '*', function( err, keys ) {
                 if ( error ) {
                     reject( error );
                 } else if ( keys ) {
@@ -271,9 +271,9 @@ function _getEnketoId( openRosaKey ) {
             error.status = 400;
             reject( error );
         } else {
-            debug( 'getting id for : ' + openRosaKey );
+            // debug( 'getting id for : ' + openRosaKey );
             client.get( openRosaKey, function( error, id ) {
-                debug( 'result', error, id );
+                // debug( 'result', error, id );
                 if ( error ) {
                     reject( error );
                 } else if ( id === '' ) {

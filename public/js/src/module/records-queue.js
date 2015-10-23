@@ -22,7 +22,6 @@
 var store = require( './store' );
 var connection = require( './connection' );
 var gui = require( './gui' );
-var Q = require( 'q' );
 var settings = require( './settings' );
 var t = require( './translator' );
 var $ = require( 'jquery' );
@@ -161,9 +160,9 @@ function _setUploadIntervals() {
  * @return {Promise} [description]
  */
 function uploadQueue() {
-    var errorMsg,
-        successes = [],
-        fails = [];
+    var errorMsg;
+    var successes = [];
+    var fails = [];
 
     if ( !uploadOngoing && connection.getOnlineStatus ) {
 
@@ -190,7 +189,7 @@ function uploadQueue() {
                                 uploadProgress.update( record.instanceId, 'ongoing', '', successes.length + fails.length, records.length );
                                 return connection.uploadRecord( record );
                             } )
-                            .then( function( result ) {
+                            .then( function() {
                                 successes.push( record.name );
                                 uploadProgress.update( record.instanceId, 'success', '', successes.length + fails.length, records.length );
                                 return store.record.remove( record.instanceId )
@@ -216,7 +215,7 @@ function uploadQueue() {
                                 }
                             } );
                     } );
-                }, new Q( null ) );
+                }, Promise.resolve() );
             } );
     }
 }
@@ -368,10 +367,8 @@ function flush() {
             store.flushTable( 'files' );
         } )
         .then( function() {
-            var deferred = Q.defer();
-            deferred.resolve();
             console.log( 'Done! The record store is empty now.' );
-            return deferred.promise;
+            return;
         } );
 }
 

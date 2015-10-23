@@ -37,14 +37,14 @@ vexDialogFactory = function( $, vex ) {
             text: 'Cancel',
             type: 'button',
             className: 'vex-dialog-button-secondary',
-            click: function( $vexContent, event ) {
+            click: function( $vexContent ) {
                 $vexContent.data().vex.value = false;
                 return vex.close( $vexContent.data().vex.id );
             }
         }
     };
     dialog.defaultOptions = {
-        callback: function( value ) {},
+        callback: function() {},
         afterOpen: function() {},
         message: 'Message',
         input: "<input name=\"vex\" type=\"hidden\" value=\"_vex-empty-value\" />",

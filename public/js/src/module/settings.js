@@ -74,7 +74,7 @@ var queryParams = _getAllQueryParams(),
     } ];
 
 // rename query string parameters to settings, but only if they do not exist already
-settingsMap.forEach( function( obj, i ) {
+settingsMap.forEach( function( obj ) {
     if ( queryParams[ obj.q ] && typeof settings[ obj.s ] === 'undefined' ) {
         settings[ obj.s ] = queryParams[ obj.q ];
     }
@@ -83,8 +83,9 @@ settingsMap.forEach( function( obj, i ) {
 // add defaults object
 settings.defaults = {};
 for ( var p in queryParams ) {
-    var path, value;
     if ( queryParams.hasOwnProperty( p ) ) {
+        var path;
+        var value;
         if ( p.search( /d\[(.*)\]/ ) !== -1 ) {
             path = decodeURIComponent( p.match( /d\[(.*)\]/ )[ 1 ] );
             value = decodeURIComponent( queryParams[ p ] );
@@ -114,10 +115,12 @@ function _getEnketoId( prefix, haystack ) {
 }
 
 function _getAllQueryParams() {
-    var val, processedVal,
-        query = window.location.search.substring( 1 ),
-        vars = query.split( "&" ),
-        params = {};
+    var val;
+    var processedVal;
+    var query = window.location.search.substring( 1 );
+    var vars = query.split( "&" );
+    var params = {};
+
     for ( var i = 0; i < vars.length; i++ ) {
         var pair = vars[ i ].split( "=" );
         if ( pair[ 0 ].length > 0 ) {
